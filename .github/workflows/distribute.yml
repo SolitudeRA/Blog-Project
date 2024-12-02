@@ -22,6 +22,9 @@ jobs:
           token: ${{ secrets.BLOG_PROJECT_TOKEN }}
           path: qiita-repo
     
+      - name: Ensure qiita-repo/pre-publish directory exists
+        run: |
+          mkdir -p qiita-repo/pre-publish
 
       - name: Push to Qiita repository
         run: |
@@ -36,7 +39,13 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: SolitudeRA/Zenn-Repo
+          ref: main
+          token: ${{ secrets.BLOG_PROJECT_TOKEN }}
           path: zenn-repo
+
+      - name: Ensure zenn-repo/pre-publish directory exists
+        run: |
+          mkdir -p zenn-repo/pre-publish
 
       - name: Push to Zenn repository
         run: |
