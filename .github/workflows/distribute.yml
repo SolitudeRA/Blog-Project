@@ -24,7 +24,7 @@ jobs:
 
       - name: Update local_updated_at in articles
         run: |
-          node scripts/update-metadata.js articles/share
+          node scripts/update_metadata.js articles/share
 
       - name: Checkout from Qiita repository
         uses: actions/checkout@v4
