@@ -17,7 +17,7 @@ jobs:
       - name: Checkout from Qiita repository
         uses: actions/checkout@v4
         with:
-          repository: SolitudeRA/qiita-repo
+          repository: solitudeRA/qiita-repo
           path: qiita-repo
 
       - name: Push to Qiita repository
