@@ -1,0 +1,45 @@
+name: Distribute Articles
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  distribute:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Checkout from Qiita repository
+        uses: actions/checkout@v4
+        with:
+          repository: SolitudeRA/Qiita-Repo
+          path: qiita-repo
+
+      - name: Push to Qiita repository
+        run: |
+          rm -rf qiita-repo/pre-publish/*
+          cp -r articles/* qiita-repo/pre-publish/
+          cd qiita-repo/pre-publish/
+          git add .
+          git commit -m "Update pre-publish articles for Qiita from main-repo"
+          git push
+
+      - name: Checkout from Zenn repository
+        uses: actions/checkout@v4
+        with:
+          repository: SolitudeRA/Zenn-Repo
+          path: zenn-repo
+
+      - name: Push to Zenn repository
+        run: |
+          rm -rf zenn-repo/pre-publish/*
+          cp -r articles/* zenn-repo/pre-publish/
+          cd zenn-repo/pre-publish/
+          git add .
+          git commit -m "Update pre-publish articles for Zenn from main-repo"
+          git push
