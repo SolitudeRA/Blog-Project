@@ -14,6 +14,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.11.0'
+
+      - name: Install dependencies
+        run: npm install gray-matter fs-extra
+
+      - name: Update local_updated_at in articles
+        run: |
+          node scripts/update-metadata.js articles/share
+
       - name: Checkout from Qiita repository
         uses: actions/checkout@v4
         with:
@@ -29,7 +41,8 @@ jobs:
       - name: Push to Qiita repository
         run: |
           rm -rf qiita-repo/pre-publish/*
-          cp -r articles/* qiita-repo/pre-publish/
+          cp -r articles/share/* qiita-repo/pre-publish/
+          cp -r articles/qiita/* qiita-repo/pre-publish/
           cd qiita-repo/pre-publish/
           git config --local user.name "SolitudeRA"
           git config --local user.email "solitude@protogalaxy.me"
@@ -40,7 +53,7 @@ jobs:
       - name: Checkout from Zenn repository
         uses: actions/checkout@v4
         with:
-          repository: SolitudeRA/Zenn-Repo
+          repository: SolitudeRA/zenn-repo
           ref: main
           token: ${{ secrets.BLOG_PROJECT_TOKEN }}
           path: zenn-repo
@@ -52,7 +65,8 @@ jobs:
       - name: Push to Zenn repository
         run: |
           rm -rf zenn-repo/pre-publish/*
-          cp -r articles/* zenn-repo/pre-publish/
+          cp -r articles/share/* zenn-repo/pre-publish/
+          cp -r articles/zenn/* zenn-repo/pre-publish/
           cd zenn-repo/pre-publish/
           git config --local user.name "SolitudeRA"
           git config --local user.email "solitude@protogalaxy.me"
