@@ -9,6 +9,11 @@ jobs:
   distribute:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Git user info
+        run: |
+          git config --local user.name "SolitudeRA"
+          git config --local user.email "solitude@protogalaxy.me"
+
       - name: Checkout main repository
         uses: actions/checkout@v4
         with:
