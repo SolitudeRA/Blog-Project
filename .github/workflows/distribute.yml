@@ -42,7 +42,11 @@ jobs:
         run: |
           rm -rf qiita-repo/pre-publish/*
           cp -r articles/share/* qiita-repo/pre-publish/
-          cp -r articles/qiita/* qiita-repo/pre-publish/
+          if [ -d articles/qiita ] && [ "$(ls -A articles/qiita)" ]; then
+            cp -r articles/qiita/* qiita-repo/pre-publish/
+          else
+            echo "Directory articles/qiita does not exist or is empty. Skipping copy step."
+          fi
           cd qiita-repo/pre-publish/
           git config --local user.name "SolitudeRA"
           git config --local user.email "solitude@protogalaxy.me"
@@ -66,7 +70,11 @@ jobs:
         run: |
           rm -rf zenn-repo/pre-publish/*
           cp -r articles/share/* zenn-repo/pre-publish/
-          cp -r articles/zenn/* zenn-repo/pre-publish/
+          if [ -d articles/zenn ] && [ "$(ls -A articles/zenn)" ]; then
+            cp -r articles/zenn/* zenn-repo/pre-publish/
+          else
+            echo "Directory articles/zenn does not exist or is empty. Skipping copy step."
+          fi
           cd zenn-repo/pre-publish/
           git config --local user.name "SolitudeRA"
           git config --local user.email "solitude@protogalaxy.me"
