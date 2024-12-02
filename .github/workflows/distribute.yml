@@ -18,6 +18,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: solitudeRA/qiita-repo
+          token: ${{ secrets.BLOG_PROJECT_TOKEN }}
           path: qiita-repo
 
       - name: Push to Qiita repository
