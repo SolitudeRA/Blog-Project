@@ -9,11 +9,6 @@ jobs:
   distribute:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Git user info
-        run: |
-          git config --local user.name "SolitudeRA"
-          git config --local user.email "solitude@protogalaxy.me"
-
       - name: Checkout main repository
         uses: actions/checkout@v4
         with:
@@ -26,7 +21,7 @@ jobs:
           ref: main
           token: ${{ secrets.BLOG_PROJECT_TOKEN }}
           path: qiita-repo
-    
+
       - name: Ensure qiita-repo/pre-publish directory exists
         run: |
           mkdir -p qiita-repo/pre-publish
@@ -36,6 +31,8 @@ jobs:
           rm -rf qiita-repo/pre-publish/*
           cp -r articles/* qiita-repo/pre-publish/
           cd qiita-repo/pre-publish/
+          git config --local user.name "SolitudeRA"
+          git config --local user.email "solitude@protogalaxy.me"
           git add .
           git commit -m "Update pre-publish articles for Qiita from main-repo"
           git push
@@ -57,6 +54,8 @@ jobs:
           rm -rf zenn-repo/pre-publish/*
           cp -r articles/* zenn-repo/pre-publish/
           cd zenn-repo/pre-publish/
+          git config --local user.name "SolitudeRA"
+          git config --local user.email "solitude@protogalaxy.me"
           git add .
           git commit -m "Update pre-publish articles for Zenn from main-repo"
           git push
