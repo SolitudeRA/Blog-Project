@@ -3,6 +3,12 @@
 ZennとQiitaへの記事管理や同時公開に対応した多端対応ブログリポジトリです。  
 記事の自動更新、シリーズリンク生成、公開プロセスの効率化を実現します。
 
+Sub Repos:
+
+Zenn Repo: https://github.com/SolitudeRA/zenn-repo
+
+Qiita Repo: https://github.com/SolitudeRA/qiita-repo
+
 ---
 
 ## 特徴
