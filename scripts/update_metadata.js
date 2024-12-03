@@ -1,13 +1,13 @@
 const fs = require('fs-extra');
 const matter = require('gray-matter');
 
-// 格式化时间为带时区偏移的 ISO 字符串
+// タイムゾーンオフセット付きのISO文字列にフォーマットする関数
 const formatWithTimezone = (date) => {
     const tzOffset = -date.getTimezoneOffset();
     const offsetHours = String(Math.floor(Math.abs(tzOffset) / 60)).padStart(2, '0');
     const offsetMinutes = String(Math.abs(tzOffset) % 60).padStart(2, '0');
     const sign = tzOffset >= 0 ? '+' : '-';
-    const isoString = date.toISOString().split('.')[0]; // 去掉毫秒部分
+    const isoString = date.toISOString().split('.')[0]; // ミリ秒部分を削除
     return `${isoString}${sign}${offsetHours}:${offsetMinutes}`;
 };
 
@@ -18,30 +18,30 @@ const updateMetadata = (directory) => {
             const content = fs.readFileSync(filePath, 'utf8');
             const parsed = matter(content);
 
-            // 获取文件最后修改时间并格式化
+            // ファイルの最終更新日時を取得してフォーマット
             const updatedAt = formatWithTimezone(new Date(fs.statSync(filePath).mtime));
 
-            // 如果 `local_updated_at` 没有变化，则跳过
+            // `local_updated_at` が変更されていない場合はスキップ
             if (parsed.data.local_updated_at === updatedAt) {
-                console.log(`Skipping unchanged file: ${file}`);
+                console.log(`変更がないためスキップしました: ${file}`);
                 return;
             }
 
-            // 更新 `local_updated_at`
+            // `local_updated_at` を更新
             parsed.data.local_updated_at = updatedAt;
 
-            // 写回文件
+            // ファイルを書き込み
             const newContent = matter.stringify(parsed.content, parsed.data);
             fs.writeFileSync(filePath, newContent);
-            console.log(`Updated metadata for: ${file}`);
+            console.log(`メタデータを更新しました: ${file}`);
         }
     });
 };
 
-// 指定需要更新的目录
-const targetDir = process.argv[2]; // 从命令行参数中获取目标目录
+// 更新対象のディレクトリを指定
+const targetDir = process.argv[2]; // コマンドライン引数からディレクトリを取得
 if (!targetDir) {
-    console.error("Error: No directory specified. Usage: node update-metadata.js <directory>");
+    console.error("エラー: ディレクトリが指定されていません。使用法: node update-metadata.js <directory>");
     process.exit(1);
 }
 
