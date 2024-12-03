@@ -1,5 +1,6 @@
 ---
 title: 'ホームサーバー完全構築ガイド #3 WordPressのデプロイ'
+series: ホームサーバー完全構築ガイド
 tags:
   - WordPress
   - Linux
@@ -8,10 +9,6 @@ tags:
   - self-hosting
 local_updated_at: '2024-11-11T18:53:24+09:00'
 ---
-シリーズ記事：
-[ホームサーバー完全構築ガイド #0 計画とハードウェア選定](https://qiita.com/SolitudeRA/items/0f1f95c31a52e1cc4bd4)
-[ホームサーバー完全構築ガイド #1 OS導入とインフラ設定](https://qiita.com/SolitudeRA/items/147a4c63a365842c1405)
-[ホームサーバー完全構築ガイド #2 サービス群の選定](https://qiita.com/SolitudeRA/items/d5cb8393fc55d657eab7)
 
 ### はじめに
 
