@@ -1,6 +1,7 @@
 ---
 title: 'ホームサーバー完全構築ガイド #1 OS導入と基本設定'
 series: ホームサーバー完全構築ガイド
+type: tech
 tags:
   - Linux
   - Ubuntu
