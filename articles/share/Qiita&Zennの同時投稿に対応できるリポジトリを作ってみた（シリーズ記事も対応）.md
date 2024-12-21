@@ -1,6 +1,7 @@
 ---
 title: 'Qiita&Zennの同時投稿に対応できるリポジトリを作ってみた（シリーズ記事も対応）'
 series: null
+emoji: ✒
 type: tech
 tags:
   - githubactions
