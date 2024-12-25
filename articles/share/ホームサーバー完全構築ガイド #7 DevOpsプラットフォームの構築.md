@@ -1,6 +1,7 @@
 ---
 title: 'ホームサーバー完全構築ガイド #7 DevOpsプラットフォームの構築'
 series: ホームサーバー完全構築ガイド
+emoji: 🌃
 type: tech
 tags:
   - devops

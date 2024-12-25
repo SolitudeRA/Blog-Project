@@ -1,6 +1,7 @@
 ---
 title: 'ホームサーバー完全構築ガイド #4 WordPressのデプロイ'
 series: ホームサーバー完全構築ガイド
+emoji: 🌃
 type: tech
 tags:
   - WordPress
